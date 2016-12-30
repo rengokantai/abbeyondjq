@@ -172,3 +172,24 @@ Object.keys(user).forEach(function(property) {
    document.querySelector('FORM [name="' + property + '"]').value = value;
 });
 ```
+
+
+##### Copying and Merging Objects
+```
+var user = $.extend(userLocation, userPersonal);
+```
+a simple polyfill
+```
+ function extend(first, second) {
+    for (var secondProp in second) {
+      var secondVal = second[secondProp];
+      first[secondProp] = secondVal;
+    }
+    return first;
+  }
+```
+ ES2015 Object.assign
+ ```
+ var user = $.extend({}, userLocation, userPersonal);
+ var user = Object.assign({}, userLocation, userPersonal);
+ ```
