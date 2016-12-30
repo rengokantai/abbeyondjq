@@ -229,3 +229,16 @@ ECMAScript 5 provides a Array.prototype.filter() to solve the same exact problem
     return name.length === 3;
   });
 ```
+
+### Useful Function Tricks
+#### A Word about JavaScript Context
+In JavaScript, context dictates the value of the this keyword at any given time during execution of code.  
+```
+var person = {
+    name: 'Ray',
+    printName: function() {
+      console.log(this.name);
+    }
+  }
+```
+__When a function belongs to an object, the context of that function is bound to the parent object.__
