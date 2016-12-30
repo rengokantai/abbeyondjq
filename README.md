@@ -241,4 +241,42 @@ var person = {
     }
   }
 ```
-__When a function belongs to an object, the context of that function is bound to the parent object.__
+__When a function belongs to an object, the context of that function is bound to the parent object.__  
+__When a function is “constructed,” the context of that function is bound to the corresponding object.__
+
+####Creating a New Function from an Old One
+######$.proxy
+```
+  var person = {
+    name: 'Ray',
+    handleClick: function() {
+      console.log(this.name + ' was clicked');
+    }
+  }
+
+  $('#my-person').click(
+    $.proxy(person.handleClick, person)   //function,context
+  );
+```
+js
+```
+document.getElementById('my-person').addEventListener('click',person.handleClick.bind(person));
+```
+with parameters:
+```
+  var person = {
+    name: 'Ray',
+    handleClick: function(user) {
+      console.log(this.name + ' was clicked by ' + user);
+    }
+  };
+//jQuery
+  $('#my-person').click(
+    $.proxy(person.handleClick, person, 'Kat')  //3rd location
+  );
+//js
+  document.getElementById('my-person').addEventListener(
+    'click',
+    person.handleClick.bind(person, 'Kat')
+  );
+```
