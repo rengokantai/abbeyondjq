@@ -188,8 +188,44 @@ a simple polyfill
     return first;
   }
 ```
- ES2015 Object.assign
- ```
- var user = $.extend({}, userLocation, userPersonal);
- var user = Object.assign({}, userLocation, userPersonal);
- ```
+ES2015 Object.assign
+```
+var user = $.extend({}, userLocation, userPersonal);
+var user = Object.assign({}, userLocation, userPersonal);
+```
+##### Locating Specific Items
+```
+var names = [
+    'Joe',
+    'Jane',
+    'Jen',
+    'Jim',
+    'Bill',
+    'Beth'
+  ];
+```
+Locating Specific Items
+```
+  // returns 4
+  names.findIndex(function(name) {
+    return name[0] === 'B';
+  });
+
+  // returns "Bill"
+  names.find(function(name) {
+    return name[0] === 'B';
+  });
+```
+
+filter and jQuery grep
+```
+  // returns ["Joe", "Jen", "Jim"]
+  $.grep(names, function(name) {
+    return name.length === 3;
+  });
+ECMAScript 5 provides a Array.prototype.filter() to solve the same exact problem in modern browsers:
+  // returns ["Joe", "Jen", "Jim"]
+  names.filter(function(name) {
+    return name.length === 3;
+  });
+```
