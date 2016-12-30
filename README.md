@@ -89,9 +89,65 @@ var errorDocument = $.parseXML(azureErrorXmlString);
 // code = "InvalidQueryParameterValue"
 var code = $(errorDocument).find('Code').text();
 ```
-Vanilla js
+Vanilla js (note DOMParser)
 ```
 var errorDocument = new DOMParser().parseFromString(azureErrorXmlString, 'application/xml');
 // code = "InvalidQueryParameterValue"
 var code = errorDocument.querySelector('Code').textContent;
 ```
+
+
+#####Array
+vanilla
+```
+  // both are true
+  Array.isArray([]);
+  Array.isArray(new Array());
+
+  // both are false
+  Array.isArray(3);
+  Array.isArray({});
+```
+jQuery
+```
+  // both are true
+  $.isArray([]);
+  $.isArray(new Array());
+
+  // both are false
+  $.isArray(3);
+  $.isArray({});
+```
+
+Array.isArray shim
+```
+ function isArray(value) {
+   return Array.isArray
+   ? Array.isArray(value)
+   : Object.prototype.toString.call(value) === '[object Array]';
+ }
+ ```
+  let’s look closer at a portion of the example ```Object.prototype.toString.call(value)```. You may be wondering why we don’t simply use typeof here. Somewhat surprisingly, typeof [] and typeof new Array() produce a result of “object”. This is technically true—an Array is a type of Object since it inherits from Object.prototype, a type value of “object” is a little less specific than expected.
+  
+  
+  
+  
+### Making JavaScript Objects Bend to Your Will 
+#### Iterating over Keys and Values
+HTML
+```
+  var user = {
+    name: 'Ray Nicholus',
+    address: '1313 Mockingbird Lane',
+    city: 'Mockingbird Heights',
+    state: 'California'
+  };
+
+  <form>
+    <input name='name'>
+    <input name='address'>
+    <input name='city'>
+    <input name='state'>
+  </form>
+```
+  
