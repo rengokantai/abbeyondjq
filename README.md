@@ -1,4 +1,12 @@
 # abbeyondjq
+[remove line numbers](http://remove-line-numbers.ruurtjan.com/)
+code
+```
+var re = new RegExp("^\\s*\\d+\\.?", "gm");
+function removeLineNumbers(textArea) {
+     textArea.value = textArea.value.replace(re, "");
+}
+```               
 ##2. You Don’t Need jQuery (Anymore
 
 
@@ -39,4 +47,51 @@ if (!Array.prototype.find) {
         }
       };
   }
+```
+
+
+
+##12. Common JavaScript Utility Functions
+#####Date
+below are same
+```
+$.now();
+new Date().getTime();
+Date.now();
+```
+
+####JSON  (almost useless)
+```
+var user = $.parseJSON(jsonString);
+console.log(user.name);
+console.log(user.id);
+```
+```
+var user = JSON.parse(jsonString);
+console.log(user.name);
+```
+
+####XML
+```
+  <?xml version="1.0" encoding="utf-8"?>
+  <Error>
+    <Code>InvalidQueryParameterValue</Code>
+    <Message>Value for one of the query parameters specified in the request URI is\
+   invalid.</Message>
+    <QueryParameterName>popreceipt</QueryParameterName>
+    <QueryParameterValue>33537277-6a52-4a2b-b4eb-0f905051827b</QueryParameterValue>
+    <Reason>invalid receipt format</Reason>
+  </Error>
+```
+jQuery
+```
+var errorDocument = $.parseXML(azureErrorXmlString);
+// code = "InvalidQueryParameterValue"
+var code = $(errorDocument).find('Code').text();
+```
+Vanilla js
+```
+var errorDocument = new DOMParser().parseFromString(azureErrorXmlString, 'application/xml');
+// code = "InvalidQueryParameterValue"
+var code = errorDocument.querySelector('Code').textContent;
 ```
