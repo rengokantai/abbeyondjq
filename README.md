@@ -280,3 +280,7 @@ with parameters:
     person.handleClick.bind(person, 'Kat')
   );
 ```
+#### Calling an Existing Function with a New Context
+```
+
+```
