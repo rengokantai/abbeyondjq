@@ -150,4 +150,25 @@ HTML
     <input name='state'>
   </form>
 ```
-  
+jQuery(does not implement hasOwnProperty)
+```
+$.each(user, function(property, value) {
+   $('form [name="' + property + '"]').val(value);
+});
+```
+js
+```
+for (var property in user) {
+    if (user.hasOwnProperty(property)) {
+      var value = user[property];
+      document.querySelector('FORM [name="' + property + '"]').value = value;
+    }
+  }
+```
+Or ES5
+```
+Object.keys(user).forEach(function(property) {
+   var value = user[property];
+   document.querySelector('FORM [name="' + property + '"]').value = value;
+});
+```
